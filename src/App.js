@@ -11,11 +11,14 @@ class BooksApp extends React.Component {
   };
 
   handleAdd = (book) => {
+    // If the passed object is not added in the list, do add it
     if (!this.state.books.includes(book)) {
       this.setState((prevState) => ({
         books: [...prevState.books, book],
       }));
     } else {
+      // Else if the passed object is in the list but with different shelf:
+      // Apply the similar logic of moving it to another shelf
       const books = this.state.books;
       const bookIndex = this.state.books.findIndex(
         (element) => element.id === book.id
@@ -28,12 +31,15 @@ class BooksApp extends React.Component {
   };
 
   handleMove = (book, shelf) => {
+    // Copy the existing books, find the index of the passed object
+    // then add "shelf" element to it with the passed shelf value
+    // Finally set the updated list to be the new state
     const books = this.state.books;
     const bookIndex = this.state.books.findIndex(
       (element) => element.id === book.id
     );
     books[bookIndex].shelf = shelf;
-    this.setState((prevState) => ({
+    this.setState(() => ({
       books: books,
     }));
   };
@@ -45,6 +51,7 @@ class BooksApp extends React.Component {
       }));
     });
   }
+
   render() {
     return (
       <div className="app">

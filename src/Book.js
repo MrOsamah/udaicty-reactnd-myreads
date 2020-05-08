@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 class Book extends Component {
   static propTypes = {
     bookDetails: PropTypes.object.isRequired,
-    moveHandler: PropTypes.func.isRequired
-  }
+    moveHandler: PropTypes.func.isRequired,
+  };
   state = {
     shelf: this.props.bookDetails.shelf,
   };
